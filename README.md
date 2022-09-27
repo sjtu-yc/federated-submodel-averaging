@@ -6,7 +6,7 @@ taobao_data_process/: process raw Taobao log for centralized learning and split 
 
 Notes: The full industrial alibaba dataset cannot be released due to the restriction of Alibaba. We show the training set of a sample user in user_data_sample. 
 
-## Federated Training:
+## Train:
 
 ```shell
 bash run_multiprocess.sh
