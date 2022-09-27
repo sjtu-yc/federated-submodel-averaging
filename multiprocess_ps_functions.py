@@ -344,16 +344,6 @@ def gather_delta_model_parameter(clients, clients_message_list, clients_delta_mo
                     gathered_delta_weights[index] += delta_model_parameter * train_set_size
     return gathered_delta_weights
 
-def compute_scaffold_delta(old_gathered_delta, new_gathered_delta, alpha):
-    if old_gathered_delta == 0:
-        return new_gathered_delta
-    result = [np.zeros(weights.shape) for weights in old_gathered_delta]
-    if len(old_gathered_delta) != len(new_gathered_delta):
-        return result
-    for i in range(len(old_gathered_delta)):
-        result[i] += (1-alpha)*old_gathered_delta[i] + alpha*new_gathered_delta[i]
-    return result
-
 def do_weights_average(gathered_delta_weights, dataset_info, user_num, item_num, cate_num, trained_samples_num, sess):
     original_weights = sess.run(tf.trainable_variables())
     new_weights = [np.zeros(weights.shape) for weights in original_weights]
