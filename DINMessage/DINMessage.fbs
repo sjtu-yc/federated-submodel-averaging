@@ -1,0 +1,34 @@
+// Example IDL file for our monster's schema.
+namespace DINMessage;
+struct Hyperparameters {
+  communication_rounds:int;
+  local_iter_num:int;
+  train_batch_size:int;
+  test_batch_size:int;
+  predict_batch_size:int;
+  predict_user_num:int;
+  predict_ads_num:int;
+  learning_rate:float;
+  decay_rate:float;
+  embedding_dim:int;
+}
+table Layer {
+  name:string;
+  dimension:[int];
+  byte_array:[ubyte];
+}
+table Message {
+  hyperparameters:Hyperparameters;
+  user_IDs:[int];
+  item_IDs:[int];
+  cate_IDs:[int];
+  user_IDs_appear_times:[int];
+  item_IDs_appear_times:[int];
+  cate_IDs_appear_times:[int];
+  client_ID:int;
+  local_loss:float;
+  client_train_set_size:int;
+  model_timestamp:string;
+  model_parameters:[Layer];
+}
+root_type Message;
