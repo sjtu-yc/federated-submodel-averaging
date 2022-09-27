@@ -1,5 +1,4 @@
-# Federated_DIN
-train on alibaba industrial dataset
+# Federated Submodel Averaging
 
 ##### Environments:
 
