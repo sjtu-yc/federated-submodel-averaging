@@ -363,7 +363,7 @@ def do_weights_average(gathered_delta_weights, dataset_info, user_num, item_num,
                 new_weights[index] = original_weights[index]
     return new_weights
 
-def my_do_weights_average(gathered_delta_weights, dataset_info, trained_samples_num, sess):
+def fedsubavg_do_weights_average(gathered_delta_weights, dataset_info, trained_samples_num, sess):
     user_coef = np.loadtxt('coefs/user_coef.txt', dtype=str, delimiter="\t")
     item_coef = np.loadtxt('coefs/item_coef.txt', dtype=str, delimiter="\t")
 
@@ -660,7 +660,7 @@ def update_model(return_model_queue, return_model_queue_lock, gathered_weights_d
                 # new_weights = do_weights_average(gathered_delta_weights, dataset_info, user_num,
                 #                                  item_num, trained_samples_num, sess)
 
-                new_weights = my_do_weights_average(gathered_delta_weights, dataset_info, trained_samples_num, sess)
+                new_weights = fedsubavg_do_weights_average(gathered_delta_weights, dataset_info, trained_samples_num, sess)
                 
                 # Update global model at parameter server
                 do_update_weights(new_weights, placeholders, update_local_vars_op, sess)
